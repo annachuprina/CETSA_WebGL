@@ -29,6 +29,7 @@
       </div>
     </div>
     <script>
+      var myGameInstance = null;
       var container = document.querySelector("#unity-container");
       var canvas = document.querySelector("#unity-canvas");
       var loadingBar = document.querySelector("#unity-loading-bar");
@@ -120,6 +121,7 @@
           progressBarFull.style.width = 100 * progress + "%";
         }).then((unityInstance) => {
           unityInstance = unityInstance;////
+          myGameInstance = unityInstance;
           loadingBar.style.display = "none";
            // Function which sends the message to Unity
           fullscreenButton.onclick = () => {
@@ -130,15 +132,16 @@
         });
       };
       function sendMessageToUnity(){
-            const txtMessage = document.getElementById("txtMessage");
-            // Get the message
-            const message = txtMessage.value;
-            // Clear the input field
-            txtMessage.value = "";
-            // Send message to the Unity scene
-            // Params: "Target object in the scene", "Function name", "Parameters"
-            SendMessage("[AcceleratorController]", "ReceiveMessageFromPage", message);
-           }
+        const txtMessage = document.getElementById("txtMessage");
+        // Get the message
+        const message = txtMessage.value;
+        // Clear the input field
+        txtMessage.value = "";
+        // Send message to the Unity scene
+        // Params: "Target object in the scene", "Function name", "Parameters"
+        if(myGameInstance != null)
+          myGameInstance.SendMessage("[AcceleratorController]", "ReceiveMessageFromPage", message);
+      }
 
       document.body.appendChild(script);
     </script>
