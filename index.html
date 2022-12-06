@@ -25,6 +25,7 @@
           <h2>Message for Unity</h2>
           <input type="text" name="txtMessage" id="txtMessage" placeholder="Enter 		message..." />
           <button onclick="sendMessageToUnity()">Send</button>
+          <h1>"The value for number is: " <span id="myText"></span></h1>
        </div>
       </div>
     </div>
@@ -131,15 +132,24 @@
           alert(message);
         });
       };
-      const acl = new Accelerometer({ frequency: 60 });
-      acl.addEventListener("reading", () => {
-        console.log(`Acceleration along the X-axis ${acl.x}`);
-        console.log(`Acceleration along the Y-axis ${acl.y}`);
-        console.log(`Acceleration along the Z-axis ${acl.z}`);
-        myGameInstance.SendMessage("[AcceleratorController]", "ReceiveMessageFromPage", acl.x);
-      });
-
-      acl.start();
+      if (window.DeviceMotionEvent == undefined) {
+        //No accelerometer is present. Use buttons. 
+        alert("no accelerometer");
+      }
+      else {
+          alert("accelerometer found");
+          window.addEventListener("devicemotion", accelerometerUpdate, true);
+      }
+      function accelerometerUpdate(e) {
+        var aX = event.accelerationIncludingGravity.x*1;
+        var aY = event.accelerationIncludingGravity.y*1;
+        var aZ = event.accelerationIncludingGravity.z*1;
+        //The following two lines are just to calculate a
+        // tilt. Not really needed. 
+        xPosition = Math.atan2(aY, aZ);
+        yPosition = Math.atan2(aX, aZ);
+        document.getElementById("myText").innerHTML = number;
+      }
       function sendMessageToUnity(){
         const txtMessage = document.getElementById("txtMessage");
         // Get the message
