@@ -122,16 +122,6 @@
           unityInstance = unityInstance;////
           loadingBar.style.display = "none";
            // Function which sends the message to Unity
-           function sendMessageToUnity(){
-            const txtMessage = document.getElementById("txtMessage");
-            // Get the message
-            const message = txtMessage.value;
-            // Clear the input field
-            txtMessage.value = "";
-            // Send message to the Unity scene
-            // Params: "Target object in the scene", "Function name", "Parameters"
-            unityInstance.SendMessage("[AcceleratorController]", "ReceiveMessageFromPage", message);
-           }
           fullscreenButton.onclick = () => {
             unityInstance.SetFullscreen(1);
           };
@@ -139,6 +129,17 @@
           alert(message);
         });
       };
+      function sendMessageToUnity(){
+            const txtMessage = document.getElementById("txtMessage");
+            // Get the message
+            const message = txtMessage.value;
+            // Clear the input field
+            txtMessage.value = "";
+            // Send message to the Unity scene
+            // Params: "Target object in the scene", "Function name", "Parameters"
+            SendMessage("[AcceleratorController]", "ReceiveMessageFromPage", message);
+           }
+
       document.body.appendChild(script);
     </script>
   </body>
