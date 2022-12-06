@@ -21,6 +21,9 @@
         <div id="unity-webgl-logo"></div>
         <div id="unity-fullscreen-button"></div>
         <div id="unity-build-title">Tilting</div>
+        <div id="unity-build-title">Tilting</div>
+        <div id="unity-build-title">Tilting</div>
+        <div id="unity-build-title">Tilting</div>
       </div>
     </div>
     <script>
@@ -31,6 +34,18 @@
       var fullscreenButton = document.querySelector("#unity-fullscreen-button");
       var warningBanner = document.querySelector("#unity-warning");
 
+      window.addEventListener(
+        'deviceorientation', handleOrientation
+      );
+      function handleOrientation(event){
+        var output = document.getElementById(
+          "output");
+          var properties = "";
+          for(var prop in event){
+            properties += props + ":" + event[prop];
+          }
+          output.innerHTML = properties;
+      }
       // Shows a temporary message banner/ribbon for a few seconds, or
       // a permanent error message on top of the canvas if type=='error'.
       // If type=='warning', a yellow highlight color is used.
