@@ -60,7 +60,7 @@
           txtMessage.value = "";
           // Send message to the Unity scene
           // Params: "Target object in the scene", "Function name", "Parameters"
-          unityInstance.SendMessage("[AcceleratorController]", "ReceiveMessageFromPage", message);
+          window.unityInstance.SendMessage("[AcceleratorController]", "ReceiveMessageFromPage", message);
       }
 
       function unityShowBanner(msg, type) {
