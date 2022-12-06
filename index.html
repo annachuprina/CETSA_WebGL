@@ -34,35 +34,6 @@
       var fullscreenButton = document.querySelector("#unity-fullscreen-button");
       var warningBanner = document.querySelector("#unity-warning");
 
-      if (window.DeviceMotionEvent == undefined) {
-          //No accelerometer is present. Use buttons. 
-          document.querySelector("#acc").textContent = "NO";
-          document.querySelector("#acc").className = "no";
-
-        }
-        else {
-          document.querySelector("#acc").textContent = "YES";
-          document.querySelector("#acc").className = "yes";
-          window.addEventListener("devicemotion", accelerometerUpdate, true);
-        }
-
-
-        function accelerometerUpdate(event) {
-          var aX = event.accelerationIncludingGravity.x*10;
-          var aY = event.accelerationIncludingGravity.y*10;
-          var aZ = event.accelerationIncludingGravity.z*10;
-
-          document.querySelector("#x").value = aX;
-          document.querySelector("#y").value = aY;
-          document.querySelector("#z").value = aZ;
-
-          // ix aY is negative, switch rotation
-          if (aY <0) {
-            aX = -aX - 180;
-          }
-          document.querySelector("#block").style.transform="rotate("+aX+"deg)";
-
-        }
 
       // Shows a temporary message banner/ribbon for a few seconds, or
       // a permanent error message on top of the canvas if type=='error'.
@@ -70,6 +41,7 @@
       // Modify or remove this function to customize the visually presented
       // way that non-critical warnings and error messages are presented to the
       // user.
+
       function unityShowBanner(msg, type) {
         function updateBannerVisibility() {
           warningBanner.style.display = warningBanner.children.length ? 'block' : 'none';
@@ -122,8 +94,14 @@
         // performance, uncomment the following line:
         // config.devicePixelRatio = 1;
 
-        unityShowBanner('WebGL builds are not supported on mobile devices.');
+        //unityShowBanner('WebGL builds are not supported on mobile devices.');
       } else {
+        window.ondevicemotion = function(event) {
+          var accelerationX = event.accelerationIncludingGravity.x;
+          var accelerationY = event.accelerationIncludingGravity.y;
+          var accelerationZ = event.accelerationIncludingGravity.z;
+          console.log(accelerationX + "   !!!!");
+        }
         // Desktop style: Render the game canvas in a window that can be maximized to fullscreen:
 
         canvas.style.width = "600px";
