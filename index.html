@@ -113,20 +113,6 @@
           fullscreenButton.onclick = () => {
             unityInstance.SetFullscreen(1);
           };
-          DeviceMotionEvent.requestPermission().then(response => {
-              if (response == 'granted') {
-              // Add a listener to get smartphone acceleration 
-                  // in the XYZ axes (units in m/s^2)
-                  window.addEventListener('devicemotion', (event) => {
-                      console.log(event);
-                  });
-            // Add a listener to get smartphone orientation 
-                // in the alpha-beta-gamma axes (units in degrees)
-                  window.addEventListener('deviceorientation',(event) => {
-                      console.log(event);
-                  });
-              }
-          });
           alert(11111)
         }).catch((message) => {
           alert(message);
@@ -164,9 +150,7 @@
                   //dot = document.getElementsByClassName("indicatorDot")[0]
                   //dot.setAttribute('style', "left:" + (px) + "%;" + "top:" + (py) + "%;");
                   if(myGameInstance != null)
-                      myGameInstance.SendMessage("GameplayController", "ReceiveMessageFromPage", px);
-                                      
-                  
+                      myGameInstance.SendMessage("GameplayController", "ReceiveMessageFromPage", px);  
                 });
                 // Do stuff here
               }
