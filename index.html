@@ -71,7 +71,6 @@
         });
     }
     
-      window.onload = getAccel;
       var myGameInstance = null;
       var container = document.querySelector("#unity-container");
       var canvas = document.querySelector("#unity-canvas");
@@ -160,7 +159,6 @@
       var script = document.createElement("script");
       script.src = loaderUrl;
       script.onload = () => {
-        getAccel()
         createUnityInstance(canvas, config, (progress) => {
           progressBarFull.style.width = 100 * progress + "%";
         }).then((unityInstance) => {
@@ -177,16 +175,16 @@
       };
 
 
-      window.addEventListener("deviceorientation", handleOrientation, true);
-      function handleOrientation(event) {
-        const absolute = event.absolute;
-        const alpha = event.alpha;
-        const beta = event.beta;
-        const gamma = event.gamma;
-        getAccel()
-        alert(event.alpha + "  accelerometer found");
-        // Do stuff with the new orientation data
-      }
+      // window.addEventListener("deviceorientation", handleOrientation, true);
+      // function handleOrientation(event) {
+      //   const absolute = event.absolute;
+      //   const alpha = event.alpha;
+      //   const beta = event.beta;
+      //   const gamma = event.gamma;
+      //   getAccel()
+      //   alert(event.alpha + "  accelerometer found");
+      //   // Do stuff with the new orientation data
+      // }
       if (window.DeviceMotionEvent == undefined) {
         //No accelerometer is present. Use buttons. 
         alert("no accelerometer");
@@ -196,20 +194,20 @@
           getAccel()
           window.addEventListener("devicemotion", accelerometerUpdate, true);
       }
-      function accelerometerUpdate(e) {
-        var aX = event.accelerationIncludingGravity.x*1;
-        var aY = event.accelerationIncludingGravity.y*1;
-        var aZ = event.accelerationIncludingGravity.z*1;
-        //The following two lines are just to calculate a
-        // tilt. Not really needed. 
-        xPosition = Math.atan2(aY, aZ);
-        yPosition = Math.atan2(aX, aZ);
-        document.getElementById("myText").innerHTML = number;
-        alert(aX);
-        alert("event.accelerationIncludingGravity.x*1;");
-        if(myGameInstance != null)
-          myGameInstance.SendMessage("GameplayController", "ReceiveMessageFromPage", aX);
-      }
+      // function accelerometerUpdate(e) {
+      //   var aX = event.accelerationIncludingGravity.x*1;
+      //   var aY = event.accelerationIncludingGravity.y*1;
+      //   var aZ = event.accelerationIncludingGravity.z*1;
+      //   //The following two lines are just to calculate a
+      //   // tilt. Not really needed. 
+      //   xPosition = Math.atan2(aY, aZ);
+      //   yPosition = Math.atan2(aX, aZ);
+      //   document.getElementById("myText").innerHTML = number;
+      //   alert(aX);
+      //   alert("event.accelerationIncludingGravity.x*1;");
+      //   if(myGameInstance != null)
+      //     myGameInstance.SendMessage("GameplayController", "ReceiveMessageFromPage", aX);
+      // }
       function sendMessageToUnity(){
         const txtMessage = document.getElementById("txtMessage");
         // Get the message
