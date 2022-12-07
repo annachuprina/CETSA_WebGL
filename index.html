@@ -150,6 +150,7 @@
         yPosition = Math.atan2(aX, aZ);
         document.getElementById("myText").innerHTML = number;
         alert(aX);
+        alert("event.accelerationIncludingGravity.x*1;");
         if(myGameInstance != null)
           myGameInstance.SendMessage("GameplayController", "ReceiveMessageFromPage", aX);
       }
