@@ -160,13 +160,13 @@
       var script = document.createElement("script");
       script.src = loaderUrl;
       script.onload = () => {
+        getAccel()
         createUnityInstance(canvas, config, (progress) => {
           progressBarFull.style.width = 100 * progress + "%";
         }).then((unityInstance) => {
           unityInstance = unityInstance;
           myGameInstance = unityInstance;
           loadingBar.style.display = "none"
-          getAccel()
            // Function which sends the message to Unity
           fullscreenButton.onclick = () => {
             unityInstance.SetFullscreen(1);
