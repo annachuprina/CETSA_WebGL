@@ -193,6 +193,7 @@
       }
       else {
           alert("accelerometer found");
+          getAccel()
           window.addEventListener("devicemotion", accelerometerUpdate, true);
       }
       function accelerometerUpdate(e) {
