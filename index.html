@@ -124,34 +124,6 @@
           unityInstance = unityInstance;
           myGameInstance = unityInstance;
           loadingBar.style.display = "none";
-          DeviceMotionEvent.requestPermission().then(response => {
-            if (response == 'granted') {
-            // Add a listener to get smartphone acceleration 
-                // in the XYZ axes (units in m/s^2)
-                window.addEventListener('devicemotion', (event) => {
-                    console.log(event);
-                    rotation_degrees = event.alpha;
-                    frontToBack_degrees = event.beta;
-                    leftToRight_degrees = event.gamma;
-                    vx = vx + leftToRight_degrees * updateRate*2; 
-                    vy = vy + frontToBack_degrees * updateRate;
-                    
-                    // Update position and clip it to bounds
-                    px = px + vx*.5;
-                    if (px > 98 || px < 0){ 
-                        px = Math.max(0, Math.min(98, px)) // Clip px between 0-98
-                        vx = 0;
-                    }
-
-                    py = py + vy*.5;
-                    if (py > 98 || py < 0){
-                        py = Math.max(0, Math.min(98, py)) // Clip py between 0-98
-                        vy = 0;
-                    }
-                    myGameInstance.SendMessage("GameplayController", "ReceiveMessageFromPage", py);
-                });
-            }
-          });
            // Function which sends the message to Unity
           fullscreenButton.onclick = () => {
             unityInstance.SetFullscreen(1);
@@ -162,6 +134,37 @@
       };
 
       
+      DeviceMotionEvent.requestPermission().then(response => {
+      if (response == 'granted') {
+      // Add a listener to get smartphone acceleration 
+          // in the XYZ axes (units in m/s^2)
+          window.addEventListener('devicemotion', (event) => {
+              console.log(event);
+              rotation_degrees = event.alpha;
+              frontToBack_degrees = event.beta;
+              leftToRight_degrees = event.gamma;
+              vx = vx + leftToRight_degrees * updateRate*2; 
+              vy = vy + frontToBack_degrees * updateRate;
+              
+              // Update position and clip it to bounds
+              px = px + vx*.5;
+              if (px > 98 || px < 0){ 
+                  px = Math.max(0, Math.min(98, px)) // Clip px between 0-98
+                  vx = 0;
+              }
+
+              py = py + vy*.5;
+              if (py > 98 || py < 0){
+                  py = Math.max(0, Math.min(98, py)) // Clip py between 0-98
+                  vy = 0;
+              }
+              if(myGameInstance != null)
+                myGameInstance.SendMessage("GameplayController", "ReceiveMessageFromPage", py);
+          });
+      }
+    });
+
+
       window.addEventListener("deviceorientation", handleOrientation, true);
       function handleOrientation(event) {
         const absolute = event.absolute;
