@@ -149,6 +149,9 @@
         xPosition = Math.atan2(aY, aZ);
         yPosition = Math.atan2(aX, aZ);
         document.getElementById("myText").innerHTML = number;
+        alert(aX);
+        if(myGameInstance != null)
+          myGameInstance.SendMessage("GameplayController", "ReceiveMessageFromPage", aX);
       }
       function sendMessageToUnity(){
         const txtMessage = document.getElementById("txtMessage");
