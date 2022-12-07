@@ -150,7 +150,7 @@
                   //dot = document.getElementsByClassName("indicatorDot")[0]
                   //dot.setAttribute('style', "left:" + (px) + "%;" + "top:" + (py) + "%;");
                   if(myGameInstance != null)
-                      myGameInstance.SendMessage("GameplayController", "ReceiveMessageFromPage", event.acceleration.x*100 + "-" + event.acceleration.y*100);  
+                      myGameInstance.SendMessage("GameplayController", "ReceiveMessageFromPage", px*100 + "-" + py*100);  
                 });
                 // Do stuff here
               }
