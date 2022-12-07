@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="TemplateData/style.css">
   </head>
   <body>
+    <button id="accelPermsButton"  style="height:50px;" onclick="getAccel()"><h1>Get Accelerometer Permissions</h1></button>
     <div id="unity-container" class="unity-desktop">
       <canvas id="unity-canvas" width=600 height=960></canvas>
       <div id="unity-loading-bar">
@@ -141,7 +142,7 @@
         // Desktop style: Render the game canvas in a window that can be maximized to fullscreen:
 
         canvas.style.width = "600px";
-        canvas.style.height = "500px";
+        canvas.style.height = "960px";
       }
 
       loadingBar.style.display = "block";
@@ -170,14 +171,20 @@
                   });
               }
           });
-          getAccel()
-          onLoadUnityScreen()
           alert(11111)
         }).catch((message) => {
           alert(message);
         });
       };
-      document.body.appendChild(script);
+      function getAccel(){
+          DeviceMotionEvent.requestPermission().then(response => {
+              if (response == 'granted') {
+                document.body.appendChild(script);
+                console.log("accelerometer permission granted");
+                // Do stuff here
+              }
+          });
+      }
     </script>
   </body>
 </html>
