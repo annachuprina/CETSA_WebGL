@@ -31,6 +31,7 @@
       </div>
     </div>
     <script>
+      $(window).on('load', function(){
         function getAccel(){
           DeviceMotionEvent.requestPermission().then(response => {
               if (response == 'granted') {
@@ -70,8 +71,7 @@
               }
           });
       }
-
-      window.onload = getAccel;
+    })
       var myGameInstance = null;
       var container = document.querySelector("#unity-container");
       var canvas = document.querySelector("#unity-canvas");
