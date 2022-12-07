@@ -21,23 +21,17 @@
         <div id="unity-webgl-logo"></div>
         <div id="unity-fullscreen-button"></div>
         <div id="unity-build-title">Tilting</div>
+	        <div class="message-form centered">
+          <h2>Message for Unity</h2>
+          <input type="text" name="txtMessage" id="txtMessage" placeholder="Enter 		message..." />
+          <button onclick="sendMessageToUnity()">Send</button>
+          <h1>"The value for number is: " <span id="myText"></span></h1>
+          <button id="accelPermsButton"  style="height:50px;" onclick="getAccel()"><h1>Get Accelerometer Permissions</h1></button>
+       </div>
       </div>
     </div>
     <script>
-      var container = document.querySelector("#unity-container");
-      var canvas = document.querySelector("#unity-canvas");
-      var loadingBar = document.querySelector("#unity-loading-bar");
-      var progressBarFull = document.querySelector("#unity-progress-bar-full");
-      var fullscreenButton = document.querySelector("#unity-fullscreen-button");
-      var warningBanner = document.querySelector("#unity-warning");
-
-
-      if (window.DeviceMotionEvent == undefined) {
-        //No accelerometer is present. Use buttons. 
-        alert("no accelerometer");
-      }
-      else {
-        alert("accelerometer found");
+      function getAccel(){
         DeviceMotionEvent.requestPermission().then(response => {
             if (response == 'granted') {
           // Add a listener to get smartphone orientation 
@@ -75,14 +69,32 @@
                 });
             }
         });
-        // window.addEventListener("devicemotion", accelerometerUpdate, true);
-      }
+    }
+    
+      window.onload = getAccel;
+      var myGameInstance = null;
+      var container = document.querySelector("#unity-container");
+      var canvas = document.querySelector("#unity-canvas");
+      var loadingBar = document.querySelector("#unity-loading-bar");
+      var progressBarFull = document.querySelector("#unity-progress-bar-full");
+      var fullscreenButton = document.querySelector("#unity-fullscreen-button");
+      var warningBanner = document.querySelector("#unity-warning");
+
       // Shows a temporary message banner/ribbon for a few seconds, or
       // a permanent error message on top of the canvas if type=='error'.
       // If type=='warning', a yellow highlight color is used.
       // Modify or remove this function to customize the visually presented
       // way that non-critical warnings and error messages are presented to the
       // user.
+
+      window.ondevicemotion = function(event) {
+        var accelerationX = event.accelerationIncludingGravity.x;
+        var accelerationY = event.accelerationIncludingGravity.y;
+        var accelerationZ = event.accelerationIncludingGravity.z;
+      }
+
+     
+
       function unityShowBanner(msg, type) {
         function updateBannerVisibility() {
           warningBanner.style.display = warningBanner.children.length ? 'block' : 'none';
@@ -148,10 +160,14 @@
       var script = document.createElement("script");
       script.src = loaderUrl;
       script.onload = () => {
+        getAccel()
         createUnityInstance(canvas, config, (progress) => {
           progressBarFull.style.width = 100 * progress + "%";
         }).then((unityInstance) => {
-          loadingBar.style.display = "none";
+          unityInstance = unityInstance;
+          myGameInstance = unityInstance;
+          loadingBar.style.display = "none"
+           // Function which sends the message to Unity
           fullscreenButton.onclick = () => {
             unityInstance.SetFullscreen(1);
           };
@@ -159,6 +175,53 @@
           alert(message);
         });
       };
+
+
+      window.addEventListener("deviceorientation", handleOrientation, true);
+      function handleOrientation(event) {
+        const absolute = event.absolute;
+        const alpha = event.alpha;
+        const beta = event.beta;
+        const gamma = event.gamma;
+        getAccel()
+        alert(event.alpha + "  accelerometer found");
+        // Do stuff with the new orientation data
+      }
+      if (window.DeviceMotionEvent == undefined) {
+        //No accelerometer is present. Use buttons. 
+        alert("no accelerometer");
+      }
+      else {
+          alert("accelerometer found");
+        getAccel()
+          window.addEventListener("devicemotion", accelerometerUpdate, true);
+      }
+      function accelerometerUpdate(e) {
+        var aX = event.accelerationIncludingGravity.x*1;
+        var aY = event.accelerationIncludingGravity.y*1;
+        var aZ = event.accelerationIncludingGravity.z*1;
+        //The following two lines are just to calculate a
+        // tilt. Not really needed. 
+        xPosition = Math.atan2(aY, aZ);
+        yPosition = Math.atan2(aX, aZ);
+        document.getElementById("myText").innerHTML = number;
+        alert(aX);
+        alert("event.accelerationIncludingGravity.x*1;");
+        if(myGameInstance != null)
+          myGameInstance.SendMessage("GameplayController", "ReceiveMessageFromPage", aX);
+      }
+      function sendMessageToUnity(){
+        const txtMessage = document.getElementById("txtMessage");
+        // Get the message
+        const message = txtMessage.value;
+        // Clear the input field
+        txtMessage.value = "";
+        // Send message to the Unity scene
+        // Params: "Target object in the scene", "Function name", "Parameters"
+        if(myGameInstance != null)
+          myGameInstance.SendMessage("[AcceleratorController]", "ReceiveMessageFromPage", message);
+      }
+
       document.body.appendChild(script);
     </script>
   </body>
