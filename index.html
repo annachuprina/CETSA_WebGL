@@ -37,13 +37,14 @@
         alert("no accelerometer");
       }
       else {
-        alert("accelerometer found");
         DeviceMotionEvent.requestPermission().then(response => {
             if (response == 'granted') {
                 console.log("accelerometer permission granted");
                 // Do stuff here
             }
         });
+        alert("accelerometer found");
+        
         // window.addEventListener("devicemotion", accelerometerUpdate, true);
       }
       // Shows a temporary message banner/ribbon for a few seconds, or
