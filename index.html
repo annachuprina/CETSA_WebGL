@@ -114,9 +114,7 @@
               }).catch((message) => {
                 alert(message);
               });
-            };
-
-      document.body.appendChild(script);
+      };
 
       function getAccel(){
           DeviceMotionEvent.requestPermission().then(response => {
@@ -126,7 +124,7 @@
                 // Do stuff here
               }
           });
-        }
+      }
 
     </script>
   </body>
