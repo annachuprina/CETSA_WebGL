@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="TemplateData/style.css">
   </head>
   <body>
+    <button id="accelPermsButton"  style="height:50px;" onclick="getAccel()"><h1>Get Accelerometer Permissions</h1></button>
     <div id="unity-container" class="unity-desktop">
       <canvas id="unity-canvas" width=360 height=640 tabindex="-1"></canvas>
       <div id="unity-loading-bar">
@@ -116,6 +117,16 @@
             };
 
       document.body.appendChild(script);
+
+      function getAccel(){
+          DeviceMotionEvent.requestPermission().then(response => {
+              if (response == 'granted') {
+                document.body.appendChild(script);
+                console.log("accelerometer permission granted");
+                // Do stuff here
+              }
+          });
+        }
 
     </script>
   </body>
