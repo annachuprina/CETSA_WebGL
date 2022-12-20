@@ -75,8 +75,12 @@
         <img src="./comment.png" class="comment" alt="This will display an animated GIF">
 
       </div>
-      <div class="mobile">Detected device is not a mobile.
+      <div class="mobile" id="permissionID" style="display:block">
+        Detected device is not a mobile.
         <button id="accelPermsButton"  style="height:50px;" onclick="getAccel()"><h1>Get Accelerometer Permissions</h1></button>
+      </div>
+      <div class="mobile" id="accessID" style="display:none">
+        Detected device is not a mobile.
         <div id="unity-container" class="unity-desktop">
           <canvas id="unity-canvas" width=360 height=640 tabindex="-1"></canvas>
           <div id="unity-loading-bar">
@@ -184,13 +188,12 @@
                 alert(message);
               });
       };
-
-      function getAccel() {
-        // feature detect
-        if (typeof DeviceOrientationEvent.requestPermission === 'function') {
+      if (typeof DeviceOrientationEvent.requestPermission === 'function') {
           DeviceOrientationEvent.requestPermission()
             .then(permissionState => {
               if (permissionState === 'granted') {
+                document.getElementById(permissionID).style.display = 'none';
+                document.getElementById(accessID).style.display = 'block';
                 document.body.appendChild(script);
                 window.addEventListener('deviceorientation', () => {});
               }
@@ -198,7 +201,6 @@
             .catch(console.error);
         } else {
           // handle regular non iOS 13+ devices
-        }
       }
 
     </script>
