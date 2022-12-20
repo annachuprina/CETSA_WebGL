@@ -11,6 +11,10 @@
     <style>
       .mobile {
           display: none;
+          display: block;
+          background-image: url("./bg.png");
+          height: 100vh;
+          background-size: cover;
       }
       
       .not-mobile {
@@ -19,12 +23,20 @@
           height: 100vh;
           background-size: cover;
       }
-      .logo{
+      .logo_1{
         display: block;
         margin-left: auto;
         margin-right: auto;
         padding-top: 20%;
         width: 20%;
+        height: auto;
+      }
+      .logo_2{
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 100px;
+        padding-top: 20px;
         height: auto;
       }
       .text{
@@ -45,17 +57,49 @@
 
         color: #FFFFFF;
       }
-      .animation{
+      .animation_1{
         position: absolute;
         bottom: 0;
         left: 0;
         width: 30%;
+      }
+      .animation_2{
+        position: absolute;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        bottom: 0;
+        left: 0;
+        width: 80%;
       }
       .comment{
         position: absolute;
         bottom: 100px;
         left: 20%;
         width: 20%;
+      }
+      .comment_2{
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        padding-top:40%;
+        width: 50%;
+      }
+      .buttonAccess{
+        position: absolute;
+        top: 50%;
+        left: 35%;
+        transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        box-sizing: border-box;
+        width: 145.53px;
+        height: 53.9px;
+        color: white;
+        background: linear-gradient(3.86deg, #D74DA9 3.4%, #D66DA1 52.63%, #E27AA2 97.13%);
+        border: 0.5px solid #E39BB1;
+        border-radius: 30px;
+        transform: rotate(0.56deg);
+        font-size: 12px;
       }
       @media only screen and (max-width: 600px) {
           .mobile {
@@ -70,17 +114,18 @@
   <body>
     <div>
       <div class="not-mobile">
-        <img src="./bottom_logo.png" class="logo">
+        <img src="./bottom_logo.png" class="logo_1">
         <img src="./animation.gif" class="animation" alt="This will display an animated GIF">
         <img src="./comment.png" class="comment" alt="This will display an animated GIF">
 
       </div>
       <div class="mobile" id="permissionID" style="display:block">
-        Detected device is not a mobile.
-        <button id="accelPermsButton"  style="height:50px;" onclick="getAccel()"><h1>Get Accelerometer Permissions</h1></button>
+        <img src="./bottom_logo.png" class="logo_2">
+        <img src="./animation_2.gif" class="animation_2" alt="This will display an animated GIF">
+        <img src="./comment_2.png" class="comment_2" alt="This will display an animated GIF">
+        <button id="accelPermsButton" class="buttonAccess" onclick="getAccel()">Give Permission</button>
       </div>
       <div class="mobile" id="accessID" style="display:none">
-        Detected device is not a mobile.
         <div id="unity-container" class="unity-desktop">
           <canvas id="unity-canvas" width=360 height=640 tabindex="-1"></canvas>
           <div id="unity-loading-bar">
@@ -203,7 +248,7 @@
             })
             .catch(console.error);
         } else {
-          // handle regular non iOS 13+ devices
+          alert("You are using not IOS device")
         }
       }
 
