@@ -9,7 +9,6 @@
     <style>
       .mobile {
           display: none;
-          display: block;
           background-image: url("./bg.png");
           height: 100vh;
           background-size: cover;
@@ -106,7 +105,7 @@
           width: 250px;
           height: 220px;
       }
-      @media only screen and (max-width: 900px) {
+      @media screen and (max-width: 992px) {
           .mobile {
               display: block;
           }
@@ -118,12 +117,12 @@
   </head>
   <body>
     <div>
-      <div class="not-mobile" style="display:block">
+      <div class="not-mobile">
          <img src="./bottom_logo.png" class="logo_1">
           <img src="./comment.png" class="comment" alt="This will display an animated GIF">
         <img src="./animation.gif" class="animation_1" alt="This will display an animated GIF">
       </div>
-      <div class="mobile" style="display:none">
+      <div class="mobile">
         <img src="./bottom_logo.png" class="logo_2">
         <div id="permissionID" style="display:block">
           <div class="commentAndButtonContainer">
