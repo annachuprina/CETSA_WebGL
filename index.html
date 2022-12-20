@@ -6,8 +6,6 @@
     <title>Unity WebGL Player | Tilting</title>
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
-    <script src="mobile-detect.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
     <style>
       .mobile {
           display: none;
@@ -64,8 +62,8 @@
         width: 30%;
       }
       .animation_2{
-        position: absolute;
         display: block;
+        margin-bottom: auto;
         margin-left: auto;
         margin-right: auto;
         bottom: 0;
@@ -79,16 +77,14 @@
         width: 20%;
       }
       .comment_2{
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        padding-top:40%;
-        width: 50%;
+        width: auto;
+        position: relative;
       }
       .buttonAccess{
         position: absolute;
-        top: 50%;
-        left: 35%;
+        top: 60%;
+        left: 48%;
+        margin-top: -400px;
         transform: translate(-50%, -50%);
         -ms-transform: translate(-50%, -50%);
         box-sizing: border-box;
@@ -101,7 +97,16 @@
         transform: rotate(0.56deg);
         font-size: 12px;
       }
-      @media only screen and (max-width: 600px) {
+      .commentAndButtonContainer{
+          display: block;
+          background-image: url("./comment_2.png");
+          margin-left: auto;
+          margin-right: auto;
+          top: 50%;
+          width: 250px;
+          height: 220px;
+      }
+      @media only screen and (max-width: 900px) {
           .mobile {
               display: block;
           }
@@ -113,33 +118,35 @@
   </head>
   <body>
     <div>
-      <div class="not-mobile">
-        <img src="./bottom_logo.png" class="logo_1">
-        <img src="./animation.gif" class="animation" alt="This will display an animated GIF">
-        <img src="./comment.png" class="comment" alt="This will display an animated GIF">
-
+      <div class="not-mobile" style="display:block">
+         <img src="./bottom_logo.png" class="logo_1">
+          <img src="./comment.png" class="comment" alt="This will display an animated GIF">
+        <img src="./animation.gif" class="animation_1" alt="This will display an animated GIF">
       </div>
-      <div class="mobile" id="permissionID" style="display:block">
+      <div class="mobile" style="display:none">
         <img src="./bottom_logo.png" class="logo_2">
-        <img src="./animation_2.gif" class="animation_2" alt="This will display an animated GIF">
-        <img src="./comment_2.png" class="comment_2" alt="This will display an animated GIF">
-        <button id="accelPermsButton" class="buttonAccess" onclick="getAccel()">Give Permission</button>
-      </div>
-      <div class="mobile" id="accessID" style="display:none">
-        <div id="unity-container" class="unity-desktop">
-          <canvas id="unity-canvas" width=360 height=640 tabindex="-1"></canvas>
-          <div id="unity-loading-bar">
-            <div id="unity-logo"></div>
-            <div id="unity-progress-bar-empty">
-              <div id="unity-progress-bar-full"></div>
+        <div id="permissionID" style="display:block">
+          <div class="commentAndButtonContainer">
+            <button id="accelPermsButton" class="buttonAccess" onclick="getAccel()">Give Permission</button>
+          </div>
+          <img src="./animation_2.gif" class="animation_2" alt="This will display an animated GIF">
+        </div>
+        <div id="accessID" style="display:none">
+          <div id="unity-container" class="unity-desktop">
+            <canvas id="unity-canvas" width=360 height=640 tabindex="-1"></canvas>
+            <div id="unity-loading-bar">
+              <div id="unity-logo"></div>
+              <div id="unity-progress-bar-empty">
+                <div id="unity-progress-bar-full"></div>
+              </div>
             </div>
-          </div>
-          <div id="unity-warning"> </div>
-          <div id="unity-footer">
-            <div id="unity-webgl-logo"></div>
-            <div id="unity-fullscreen-button"></div>
-            <div id="unity-build-title">Tilting</div>
-          </div>
+            <div id="unity-warning"> </div>
+            <div id="unity-footer">
+              <div id="unity-webgl-logo"></div>
+              <div id="unity-fullscreen-button"></div>
+              <div id="unity-build-title">Tilting</div>
+            </div>
+        </div>
       </div>
     </div>
     </div>
