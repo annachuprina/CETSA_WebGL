@@ -95,17 +95,6 @@
     </div>
     </div>
     <script>
-
-      var md = navigator.userAgent.toLowerCase();
-      var agentID = md.match(/(iphone|ipad|ipod)/);
-      if(agentID && $(window).width() <= 1024){
-        const div =  document.querySelector('div');
-        div.addClass("is-modile").removeClass("not-modile");
-      }
-      else{
-        const div =  document.querySelector('div');
-        $("div").removeClass("is-modile").addClass("not-modile");
-      }
       var container = document.querySelector("#unity-container");
       var canvas = document.querySelector("#unity-canvas");
       var loadingBar = document.querySelector("#unity-loading-bar");
