@@ -188,12 +188,15 @@
                 alert(message);
               });
       };
-      if (typeof DeviceOrientationEvent.requestPermission === 'function') {
+
+      function getAccel() {
+        // feature detect
+        if (typeof DeviceOrientationEvent.requestPermission === 'function') {
           DeviceOrientationEvent.requestPermission()
             .then(permissionState => {
               if (permissionState === 'granted') {
-                document.getElementById(permissionID).style.display = 'none';
-                document.getElementById(accessID).style.display = 'block';
+                document.getElementById("permissionID").style.display = 'none';
+                document.getElementById("accessID").style.display = 'block';
                 document.body.appendChild(script);
                 window.addEventListener('deviceorientation', () => {});
               }
@@ -201,6 +204,7 @@
             .catch(console.error);
         } else {
           // handle regular non iOS 13+ devices
+        }
       }
 
     </script>
