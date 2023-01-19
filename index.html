@@ -264,7 +264,7 @@
         }
       }
     </script>
-    <script type="module">
+    <script>
       // Import the functions you need from the SDKs you need
       import { initializeApp } from "https://www.gstatic.com/firebasejs/9.16.0/firebase-app.js";
       // TODO: Add SDKs for Firebase products that you want to use
@@ -278,13 +278,13 @@
         projectId: "pelago-cetsa-game",
         storageBucket: "pelago-cetsa-game.appspot.com",
         messagingSenderId: "124431317073",
-        appId: "1:124431317073:web:1627e08f2c959702772070"
+        appId: "1:124431317073:web:635cb141d90cf97d772070"
       };
     
       // Initialize Firebase
       firebase.initializeApp(firebaseConfig);
 
-      var userData = firebase.database().ref("users");
+      var userData = firebase.database().Child("users");
 
       function CallFunction(userID, e, m, i){
         var newUser = userData.push();
