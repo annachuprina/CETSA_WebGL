@@ -283,8 +283,11 @@
       // Initialize Firebase
       firebase.initializeApp(firebaseConfig);
 
-      function CallFunction(e, m, i){
-        firebase.database().ref("users").set({
+      var userData = firebase.database().ref("users");
+
+      function CallFunction(userID, e, m, i){
+        var newUser = userData.push();
+        newUser.set({
           email: e,
           message: m,
           interests: i,
