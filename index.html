@@ -286,9 +286,23 @@
         }
       }
       
-
+      const app1 = initializeApp({
+        databaseURL: "https://pelago-cetsa-game-default-rtdb.europe-west1.firebasedatabase.app/"
+      });
       function CallFunction(userID, e, m, i){
         alert(1111);
+        const database1 = getDatabase(app1);
+        set(ref(database1, 'users/' + userID), {
+          email: e,
+          message: m,
+          interests: i,
+        })
+        .then(() => {
+          alert("Data was added");
+        })
+        .catch((error) => {
+          alert(error);
+        })
         /*const db = getDatabase();
         const reference = ref(db, 'users/' + userID);
         set(reference, {
