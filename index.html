@@ -175,7 +175,6 @@
       };
       // Initialize Firebase
       const app = initializeApp(firebaseConfig);
-      const db = getDatabase(app);
 
       var container = document.querySelector("#unity-container");
       var canvas = document.querySelector("#unity-canvas");
@@ -291,19 +290,15 @@
       });*/
       function CallFunction(userID, e, m, i){
         alert(1111);
-        set(ref(db, 'users/' + userId), {
-            message: m,
-            email: e,
-            interests : i
+        const db = getDatabase(app);
+        const userListRef = ref(db, 'users');
+        const newUserRef = push(userListRef);
+        set(newUserRef, {
+          message: 1,
+          email: 1,
+          interests : 1
         });
-        var rootRef = firebase.database().ref();
-        var storesRef = rootRef.child('users');
-        var newStoreRef = storesRef.push();
-        newStoreRef.set({
-            message: m,
-            email: e,
-            interests : i
-        });
+
         /*const db = getDatabase();
         const reference = ref(db, 'users/' + userID);
         set(reference, {
