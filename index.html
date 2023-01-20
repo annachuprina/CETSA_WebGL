@@ -290,6 +290,7 @@
       const app = firebase.initializeApp(firebaseConfig);
 
       function CallFunction(userID, e, m, i){
+        alert(1111);
         const db = getDatabase();
         const reference = ref(db, 'users/' + userID);
         set(reference, {
