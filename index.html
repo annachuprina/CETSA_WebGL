@@ -289,7 +289,6 @@
         databaseURL: "https://pelago-cetsa-game-default-rtdb.europe-west1.firebasedatabase.app/"
       });*/
       function CallFunction(userID, e, m, i){
-        alert(1111);
         const db = getDatabase(app);
         const userListRef = ref(db, 'users');
         const newUserRef = push(userListRef);
