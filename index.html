@@ -119,6 +119,9 @@
           }
       }
       </style>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.15.0/firebase-app.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.15.0/firebase-database.min.js"></script>
   </head>
   <body>
     <div>
@@ -154,7 +157,6 @@
       </div>
     </div>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.20.0-202088235442/firebase-app.js"></script>
     <script>
       var container = document.querySelector("#unity-container");
       var canvas = document.querySelector("#unity-canvas");
@@ -263,6 +265,9 @@
           alert("You are using not IOS device")
         }
       }
+
+    </script>
+    <script type="module">
       // Import the functions you need from the SDKs you need
       //import { initializeApp } from "https://www.gstatic.com/firebasejs/9.16.0/firebase-app.js";
       // TODO: Add SDKs for Firebase products that you want to use
@@ -284,7 +289,11 @@
       var userData = firebase.database().ref("users");
 
       function CallFunction(userID, e, m, i){
-        var newUser = userData.push();
+        var newUser = userData.push({
+          email: e,
+          message: m,
+          interests: i,
+        });
         newUser.set({
           email: e,
           message: m,
