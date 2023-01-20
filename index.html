@@ -283,12 +283,12 @@
         }
       }
       
-      const app1 = initializeApp({
+      /*const app1 = initializeApp({
         databaseURL: "https://pelago-cetsa-game-default-rtdb.europe-west1.firebasedatabase.app/"
-      });
+      });*/
       function CallFunction(userID, e, m, i){
         alert(1111);
-        const database1 = getDatabase(app1);
+        const database1 = getDatabase(app);
         set(ref(database1, 'users/' + userID), {
           email: e,
           message: m,
