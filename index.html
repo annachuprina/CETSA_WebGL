@@ -289,18 +289,11 @@
       });*/
       function CallFunction(userID, e, m, i){
         alert(1111);
-        const database1 = getDatabase(app);
-        set(ref(database1, 'users/' + userID), {
-          email: e,
-          message: m,
-          interests: i,
-        })
-        .then(() => {
-          alert("Data was added");
-        })
-        .catch((error) => {
-          alert(error);
-        })
+        firebase.database().ref('users/' + userId).set({
+            message: m,
+            email: e,
+            interests : i
+        });
         /*const db = getDatabase();
         const reference = ref(db, 'users/' + userID);
         set(reference, {
