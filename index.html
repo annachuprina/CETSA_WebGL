@@ -297,6 +297,11 @@
           message: 1,
           email: 1,
           interests : 1
+        }).then(() => {
+          alert("Data was added");
+        })
+        .catch((error) => {
+          alert(error);
         });
 
         /*const db = getDatabase();
