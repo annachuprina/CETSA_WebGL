@@ -296,6 +296,14 @@
             email: e,
             interests : i
         });
+        var rootRef = firebase.database().ref();
+        var storesRef = rootRef.child('users');
+        var newStoreRef = storesRef.push();
+        newStoreRef.set({
+            message: m,
+            email: e,
+            interests : i
+        });
         /*const db = getDatabase();
         const reference = ref(db, 'users/' + userID);
         set(reference, {
