@@ -264,7 +264,7 @@
                 alert(message);
               });
       };
-
+  
       function getAccel() {
         // feature detect
         if (typeof DeviceOrientationEvent.requestPermission === 'function') {
@@ -282,6 +282,7 @@
           alert("You are using not IOS device")
         }
       }
+      window.getAccel = getAccel;
       
       /*const app1 = initializeApp({
         databaseURL: "https://pelago-cetsa-game-default-rtdb.europe-west1.firebasedatabase.app/"
