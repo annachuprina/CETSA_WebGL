@@ -122,6 +122,7 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.15.0/firebase-app.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.15.0/firebase-database.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.15.0/firebase-firestore.min.js"></script>
   </head>
   <body>
     <div>
@@ -268,6 +269,8 @@
 
     </script>
     <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.16.0/firebase-app.js";
+      import { getDatabase, set, get, update, remove, ref, child } from "https://www.gstatic.com/firebasejs/9.16.0/firebase-database.js";
       // Import the functions you need from the SDKs you need
       //import { initializeApp } from "https://www.gstatic.com/firebasejs/9.16.0/firebase-app.js";
       // TODO: Add SDKs for Firebase products that you want to use
@@ -293,6 +296,12 @@
           email: e,
           message: m,
           interests: i,
+        })
+        .then(() => {
+          alert("Data was added");
+        })
+        .catch((error) => {
+          alert(error);
         })
       }
     </script>
