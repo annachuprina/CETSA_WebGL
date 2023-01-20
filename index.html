@@ -159,6 +159,25 @@
     </div>
     </div>
     <script>
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.16.0/firebase-app.js";
+      import { getDatabase, set, get, update, remove, ref, child } from "https://www.gstatic.com/firebasejs/9.16.0/firebase-database.js";
+      // Import the functions you need from the SDKs you need
+      //import { initializeApp } from "https://www.gstatic.com/firebasejs/9.16.0/firebase-app.js";
+      // TODO: Add SDKs for Firebase products that you want to use
+      // https://firebase.google.com/docs/web/setup#available-libraries
+    
+      // Your web app's Firebase configuration
+      const firebaseConfig = {
+        apiKey: "AIzaSyDs9JVsK953_PAmNZTF2-0gyH1sim9wmpQ",
+        authDomain: "pelago-cetsa-game.firebaseapp.com",
+        databaseURL: "https://pelago-cetsa-game-default-rtdb.europe-west1.firebasedatabase.app",
+        projectId: "pelago-cetsa-game",
+        storageBucket: "pelago-cetsa-game.appspot.com",
+        messagingSenderId: "124431317073",
+        appId: "1:124431317073:web:635cb141d90cf97d772070"
+      };
+      // Initialize Firebase
+      var app = firebase.initializeApp(firebaseConfig);
       var container = document.querySelector("#unity-container");
       var canvas = document.querySelector("#unity-canvas");
       var loadingBar = document.querySelector("#unity-loading-bar");
@@ -266,25 +285,7 @@
           alert("You are using not IOS device")
         }
       }
-      /*import { initializeApp } from "https://www.gstatic.com/firebasejs/9.16.0/firebase-app.js";
-      import { getDatabase, set, get, update, remove, ref, child } from "https://www.gstatic.com/firebasejs/9.16.0/firebase-database.js";
-      // Import the functions you need from the SDKs you need
-      //import { initializeApp } from "https://www.gstatic.com/firebasejs/9.16.0/firebase-app.js";
-      // TODO: Add SDKs for Firebase products that you want to use
-      // https://firebase.google.com/docs/web/setup#available-libraries
-    
-      // Your web app's Firebase configuration
-      const firebaseConfig = {
-        apiKey: "AIzaSyDs9JVsK953_PAmNZTF2-0gyH1sim9wmpQ",
-        authDomain: "pelago-cetsa-game.firebaseapp.com",
-        databaseURL: "https://pelago-cetsa-game-default-rtdb.europe-west1.firebasedatabase.app",
-        projectId: "pelago-cetsa-game",
-        storageBucket: "pelago-cetsa-game.appspot.com",
-        messagingSenderId: "124431317073",
-        appId: "1:124431317073:web:635cb141d90cf97d772070"
-      };
-      // Initialize Firebase
-      const app = firebase.initializeApp(firebaseConfig);*/
+      
 
       function CallFunction(userID, e, m, i){
         alert(1111);
