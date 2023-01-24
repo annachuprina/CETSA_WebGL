@@ -276,6 +276,20 @@
                 document.getElementById("accessID").style.display = 'block';
                 document.body.appendChild(script);
                 window.addEventListener('deviceorientation', () => {});
+
+                  const db = getDatabase(app);
+                  const userListRef = ref(db, 'users');
+                  const newUserRef = push(userListRef);
+                  set(newUserRef, {
+                    message: 22,
+                    email: 22,
+                    interests : 22
+                  }).then(() => {
+                    alert("Data was added");
+                  })
+                  .catch((error) => {
+                    alert(error);
+                  });
               }
             })
             .catch(console.error);
