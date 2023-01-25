@@ -324,8 +324,20 @@
       function ErrorEmail(){
           alert("Please, Enter Email");
         }
-      window.receiveMessageFromUnity = function(txt){
-        alert(txt);
+      window.receiveMessageFromUnity = function(email, message, interests){
+        const db = getDatabase(app);
+        const userListRef = ref(db, 'users');
+        const newUserRef = push(userListRef);
+        set(newUserRef, {
+          message: email,
+          email: message,
+          interests : interests
+        }).then(() => {
+          alert("Data was added");
+        })
+        .catch((error) => {
+          alert(error);
+        });
       }
     </script>
   </body>
