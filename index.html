@@ -317,13 +317,6 @@
           alert(error);
         })*/
       }
-    </script>
-  
-    <script language="JavaScript" type="text/javascript">
-     
-      function ErrorEmail(){
-          alert("Please, Enter Email");
-        }
       window.receiveMessageFromUnity = function(email, message, interests){
         const db = getDatabase(app);
         const userListRef = ref(db, 'users');
@@ -339,6 +332,14 @@
           alert(error);
         });
       }
+    </script>
+  
+    <script language="JavaScript" type="text/javascript">
+     
+      function ErrorEmail(){
+          alert("Please, Enter Email");
+        }
+     
     </script>
   </body>
 </html>
