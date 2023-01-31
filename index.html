@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Unity WebGL Player | Tilting</title>
+    <title>Unity WebGL Player | CETSA</title>
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
     <style>
@@ -113,6 +113,13 @@
           height: 40%;
           padding-bottom: 200px;
       }
+      .unity-container{
+        position: absolute; 
+        width: 100%; 
+        height: 100%;
+        display: flex;
+        justify-content: center; 
+      }
       @media screen and (max-width: 1026px) {
           .mobile {
               display: block;
@@ -139,7 +146,7 @@
           <img src="./animation_2.gif" class="animation_2" alt="This will display an animated GIF">
         </div>
         <div id="accessID" style="display:none">
-          <div id="unity-container" class="unity-desktop" style="position: absolute; width: 100%; height: 100%">
+          <div id="unity-container" class="unity-container" style="position: absolute; width: 100%; height: 100%">
             <canvas id="unity-canvas" tabindex="-1"></canvas>
             <div id="unity-loading-bar">
               <div id="unity-logo"></div>
@@ -148,11 +155,11 @@
               </div>
             </div>
             <div id="unity-warning"> </div>
-            <div id="unity-footer">
+            <!--<div id="unity-footer">
               <div id="unity-webgl-logo"></div>
               <div id="unity-fullscreen-button"></div>
               <div id="unity-build-title">Tilting</div>
-            </div>
+            </div>-->
         </div>
       </div>
     </div>
