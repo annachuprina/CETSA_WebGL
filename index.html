@@ -95,7 +95,7 @@
         bottom: 0;
         margin-left: auto;
         margin-right: auto;
-        margin-top: 20px;
+        margin-top: 20pxF;
       }
       .commentAndButtonContainer{
           display: flex;
@@ -139,8 +139,8 @@
           <img src="./animation_2.gif" class="animation_2" alt="This will display an animated GIF">
         </div>
         <div id="accessID" style="display:none">
-          <div id="unity-container" class="unity-desktop">
-            <canvas id="unity-canvas" width=360 height=640 tabindex="-1"></canvas>
+          <div id="unity-container" class="unity-desktop" style="position: absolute; width: 100%; height: 100%">
+            <canvas id="unity-canvas"width={{{ WIDTH }}} height={{{ HEIGHT }}} style="width: 100%; height: 100%"  tabindex="-1"></canvas>
             <div id="unity-loading-bar">
               <div id="unity-logo"></div>
               <div id="unity-progress-bar-empty">
