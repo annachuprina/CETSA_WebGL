@@ -140,7 +140,7 @@
         </div>
         <div id="accessID" style="display:none">
           <div id="unity-container" class="unity-desktop" style="position: absolute; width: 100%; height: 100%">
-            <canvas id="unity-canvas" width="auto" height="auto" tabindex="-1"></canvas>
+            <canvas id="unity-canvas" tabindex="-1"></canvas>
             <div id="unity-loading-bar">
               <div id="unity-logo"></div>
               <div id="unity-progress-bar-empty">
@@ -151,7 +151,7 @@
             <div id="unity-footer">
               <div id="unity-webgl-logo"></div>
               <div id="unity-fullscreen-button"></div>
-              <div id="unity-build-title">CETSA</div>
+              <div id="unity-build-title">Tilting</div>
             </div>
         </div>
       </div>
@@ -246,10 +246,12 @@
 
 
       } else {
+        var mywidth = innerWidth;
+        var myheight = innerHeight;
         // Desktop style: Render the game canvas in a window that can be maximized to fullscreen:
 
-        canvas.style.width = "360px";
-        canvas.style.height = "640px";
+        canvas.style.width = mywidth + "px";
+        canvas.style.height = myheight + "px";
       }
 
       loadingBar.style.display = "block";
