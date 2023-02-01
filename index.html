@@ -202,14 +202,6 @@
       // Modify or remove this function to customize the visually presented
       // way that non-critical warnings and error messages are presented to the
       // user.
-      var DEBUG = false;
-      if(!DEBUG){
-        if(!window.console) window.console = {};
-          var methods = ["log", "debug", "warn", "info"];
-          for(var i=0;i<methods.length;i++){
-          console[methods] = function(){};
-        }
-      }
       function unityShowBanner(msg, type) {
         function updateBannerVisibility() {
           warningBanner.style.display = warningBanner.children.length ? 'block' : 'none';
