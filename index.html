@@ -107,7 +107,7 @@
           background-size: contain;
           background-repeat: no-repeat;
           position: fixed;
-          top: 40%;
+          top: 35%;
           left: 30%;
           margin-top: -50px;
           margin-left: -100px;
@@ -315,7 +315,6 @@
           interests : 555
         }).then(() => {
           alert("Data was added");
-          MyUnityInstance.SendMessage("DatabaseAccess", "RedirectToFinalScreen");
         })
         .catch((error) => {
           alert(error);
@@ -345,6 +344,7 @@
           interests : interests
         }).then(() => {
           alert("Thank you, your data was submitted");
+          MyUnityInstance.SendMessage("DatabaseAccess", "RedirectToFinalScreen", "DONE");
         })
         .catch((error) => {
           alert(error);
