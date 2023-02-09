@@ -314,7 +314,7 @@
           interests : 555
         }).then(() => {
           alert("Data was added");
-          MyUnityInstance.SendMessage("StayInTouch", "RedirectToFinalScreen");
+          MyUnityInstance.SendMessage("DatabaseAccess", "RedirectToFinalScreen");
         })
         .catch((error) => {
           alert(error);
