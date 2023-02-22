@@ -283,10 +283,10 @@
                 loadingBar.style.display = "none";
                 MyUnityInstance = unityInstance;
                 if (/iPhone|Android/i.test(navigator.userAgent)) {
-                  MyUnityInstance.SendMessage("DatabaseAccess", "CheckIpadOrIphone", "Iphone");
+                  MyUnityInstance.SendMessage("CheckDevice", "CheckIpadOrIphone", "Iphone");
                 }
                 else if (/iPad|iPod/i.test(navigator.userAgent)) {
-                  MyUnityInstance.SendMessage("DatabaseAccess", "CheckIpadOrIphone", "Ipad");
+                  MyUnityInstance.SendMessage("CheckDevice", "CheckIpadOrIphone", "Ipad");
                 }
                 /*fullscreenButton.onclick = () => {
                   unityInstance.SetFullscreen(1);
