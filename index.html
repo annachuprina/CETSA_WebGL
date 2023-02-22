@@ -282,6 +282,12 @@
               }).then((unityInstance) => {
                 loadingBar.style.display = "none";
                 MyUnityInstance = unityInstance;
+                if (/iPhone|Android/i.test(navigator.userAgent)) {
+                  MyUnityInstance.SendMessage("DatabaseAccess", "CheckIpadOrIphone", "Iphone");
+                }
+                else if (/iPad|iPod/i.test(navigator.userAgent)) {
+                  MyUnityInstance.SendMessage("DatabaseAccess", "CheckIpadOrIphone", "Ipad");
+                }
                 /*fullscreenButton.onclick = () => {
                   unityInstance.SetFullscreen(1);
                 };*/
@@ -352,6 +358,12 @@
         }).then(() => {
           alert("Thank you, your data was submitted");
           MyUnityInstance.SendMessage("DatabaseAccess", "RedirectToFinalScreen", "DONE");
+          if (/iPhone|Android/i.test(navigator.userAgent)) {
+            MyUnityInstance.SendMessage("DatabaseAccess", "CheckIpadOrIphone", "Iphone");
+          }
+          else if (/iPad|iPod/i.test(navigator.userAgent)) {
+            MyUnityInstance.SendMessage("DatabaseAccess", "CheckIpadOrIphone", "Ipad");
+          }
         })
         .catch((error) => {
           alert(error);
