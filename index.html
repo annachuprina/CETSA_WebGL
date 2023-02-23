@@ -282,12 +282,6 @@
               }).then((unityInstance) => {
                 loadingBar.style.display = "none";
                 MyUnityInstance = unityInstance;
-                if (/iPhone|Android/i.test(navigator.userAgent)) {
-                  MyUnityInstance.SendMessage("CheckDevice", "CheckIpadOrIphone", "Iphone");
-                }
-                else if (/iPad|iPod/i.test(navigator.userAgent)) {
-                  MyUnityInstance.SendMessage("CheckDevice", "CheckIpadOrIphone", "Ipad");
-                }
                 /*fullscreenButton.onclick = () => {
                   unityInstance.SetFullscreen(1);
                 };*/
@@ -357,11 +351,13 @@
           interests : interests
         }).then(() => {
           alert("Thank you, your data was submitted");
+          MyUnityInstance.SendMessage("DatabaseAccess", "RedirectToFinalScreen", "DONE");
         })
         .catch((error) => {
           alert(error);
         });
       }
+
       window.receiveMessageFromUnityAboutDevice = function(){
         if (/iPhone|Android/i.test(navigator.userAgent)) {
           alert("Iphone");
