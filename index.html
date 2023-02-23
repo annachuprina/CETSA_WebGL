@@ -360,11 +360,9 @@
 
       window.receiveMessageFromUnityAboutDevice = function(){
         if (/iPhone|Android/i.test(navigator.userAgent)) {
-          alert("Iphone");
           MyUnityInstance.SendMessage("CheckDevice", "CheckIpadOrIphone", "Iphone");
         }
         else if (/iPad|iPod/i.test(navigator.userAgent)) {
-          alert("Ipad");
           MyUnityInstance.SendMessage("CheckDevice", "CheckIpadOrIphone", "Ipad");
         }
       }
